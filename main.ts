@@ -1,4 +1,27 @@
-let Turret = sprites.create(img`
+function shootshell () {
+    shell = sprites.createProjectileFromSprite(img`
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . f f . . . . . . . 
+        . . . . . . f 4 4 f . . . . . . 
+        . . . . . f 4 4 5 4 f . . . . . 
+        . . . . f 4 4 4 4 5 4 f . . . . 
+        . . . . f 4 4 4 4 5 4 f . . . . 
+        . . . . f 4 4 4 4 5 4 f . . . . 
+        . . . . f 4 4 4 4 5 4 f . . . . 
+        . . . . . f f f f f f . . . . . 
+        . . . . f 4 4 4 4 5 4 f . . . . 
+        . . . . . f f f f f f . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        `, Turret, 0, -50)
+    pause(2000)
+}
+let shell: Sprite = null
+let Turret: Sprite = null
+Turret = sprites.create(img`
     .............66666..............
     .............66666..............
     .............66666..............
@@ -173,3 +196,8 @@ let Zombie = sprites.create(img`
     . . . . . . . . . . . . . . . . 
     `, SpriteKind.Player)
 Turret.setPosition(80, 100)
+forever(function () {
+    if (controller.A.isPressed()) {
+        shootshell()
+    }
+})
