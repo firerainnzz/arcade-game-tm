@@ -1,4 +1,4 @@
-<xml xmlns="https://developers.google.com/blockly/xml"><variables><variable id="vEng]pXXXd,QB#6XEOCb">mySprite</variable><variable type="KIND_SpriteKind" id="$VHPE6NB`tjIr+v3yH9-">Player</variable><variable type="KIND_SpriteKind" id="Hp5l$Nbl`Dgk;Gla93E-">Projectile</variable><variable type="KIND_SpriteKind" id="RHo%%:6ZT3Yf#v9WDw7L">Food</variable><variable type="KIND_SpriteKind" id="fo6!/==37[i#n@ZRAW1!">Enemy</variable></variables><block type="pxt-on-start" id="l`lE?*7r}wgiXHMg|(qv" x="0" y="0"><statement name="HANDLER"><block type="variables_set" id="o#ts(V38%JKM/4C$+Gv|"><field name="VAR" id="vEng]pXXXd,QB#6XEOCb">mySprite</field><value name="VALUE"><shadow xmlns="http://www.w3.org/1999/xhtml" type="math_number"><field name="NUM">0</field></shadow><block type="spritescreate" id=".AAn,zY4VI*O.fb/(8(_"><value name="img"><shadow type="screen_image_picker" id="zr!g}260*wF}-)e`g6nr"><field name="img">img`
+<xml xmlns="https://developers.google.com/blockly/xml"><variables><variable type="KIND_SpriteKind" id="$VHPE6NB`tjIr+v3yH9-">Player</variable><variable type="KIND_SpriteKind" id="Hp5l$Nbl`Dgk;Gla93E-">Projectile</variable><variable type="KIND_SpriteKind" id="RHo%%:6ZT3Yf#v9WDw7L">Food</variable><variable type="KIND_SpriteKind" id="fo6!/==37[i#n@ZRAW1!">Enemy</variable><variable id="vEng]pXXXd,QB#6XEOCb">mySprite</variable><variable id="X}K9Ds@:mr!HdS(yl]v.">mySprite2</variable><variable id="{;-5G^Z_R_RPOt+4n+S#">Zombie</variable><variable id="?+t3A.N+77iIaR|8jtU^">Turret</variable></variables><block type="pxt-on-start" id="l`lE?*7r}wgiXHMg|(qv" x="0" y="0"><statement name="HANDLER"><block type="variables_set" id="o#ts(V38%JKM/4C$+Gv|"><field name="VAR" id="?+t3A.N+77iIaR|8jtU^">Turret</field><value name="VALUE"><shadow xmlns="http://www.w3.org/1999/xhtml" type="math_number"><field name="NUM">0</field></shadow><block type="spritescreate" id=".AAn,zY4VI*O.fb/(8(_"><value name="img"><shadow type="screen_image_picker" id="zr!g}260*wF}-)e`g6nr"><field name="img">img`
 .............66666..............
 .............66666..............
 .............66666..............
@@ -152,4 +152,21 @@ eeee777777777777777777eeeee77777776666677766666777777777777666667777777777777444
 7777777777777777777777777766666777777777777777777777777744444777777776666677777777777777777777777777777777777777777777777777777777777777777777777777777777777777
 7777777777777777777777777766666777777777777777777777777744444777777776666677777777777777777777777777777777777777777777777777777777777777777777777777777777777777
 7777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777
-`</field><data>{"commentRefs":[],"fieldData":{"img":"1u!KSEljSV~Zjj(D@wl;"}}</data></shadow></value></block></next></block></statement></block></xml>
+`</field><data>{"commentRefs":[],"fieldData":{"img":"1u!KSEljSV~Zjj(D@wl;"}}</data></shadow></value></block></next></block></statement></block><block type="variables_set" id="6{+|(3QHS*eZj-p3YKr5" disabled="true" x="10" y="230"><field name="VAR" id="{;-5G^Z_R_RPOt+4n+S#">Zombie</field><value name="VALUE"><shadow xmlns="http://www.w3.org/1999/xhtml" type="math_number"><field name="NUM">0</field></shadow><block type="spritescreate" id="rtqD6uZ]f;eNp.wWZMJ5" disabled="true"><value name="img"><shadow type="screen_image_picker" id="{s8|;Fh2EwJ8DGxODoS0" disabled="true"><field name="img">img`
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+`</field><data>{"commentRefs":[],"fieldData":{"img":"{s8|;Fh2EwJ8DGxODoS0"}}</data></shadow></value><value name="kind"><shadow type="spritekind" id="yvMV}7cR_![~YhKFQ1+D" disabled="true"><field name="MEMBER">Player</field></shadow></value></block></value></block></xml>
