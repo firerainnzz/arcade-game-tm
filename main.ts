@@ -1,57 +1,31 @@
 function shootshell () {
     shell = sprites.createProjectileFromSprite(img`
-        . . . . . . . . . . . . . . . . 
-        . . . . . . . . . . . . . . . . 
-        . . . . . . . . . . . . . . . . 
-        . . . . . . . . . . . . . . . . 
-        . . . . . . . f f . . . . . . . 
-        . . . . . . f 4 4 f . . . . . . 
-        . . . . . f 4 4 5 4 f . . . . . 
-        . . . . f 4 4 4 4 5 4 f . . . . 
-        . . . . f 4 4 4 4 5 4 f . . . . 
-        . . . . f 4 4 4 4 5 4 f . . . . 
-        . . . . f 4 4 4 4 5 4 f . . . . 
-        . . . . . f f f f f f . . . . . 
-        . . . . f 4 4 4 4 5 4 f . . . . 
-        . . . . . f f f f f f . . . . . 
-        . . . . . . . . . . . . . . . . 
-        . . . . . . . . . . . . . . . . 
-        `, Turret, 0, -50)
-    pause(2000)
+        . f f . 
+        f 5 5 f 
+        f 4 5 f 
+        f 4 5 f 
+        f f f f 
+        f 4 5 f 
+        f f f f 
+        `, Turret, 0, -100)
+    pause(500)
 }
 let shell: Sprite = null
 let Turret: Sprite = null
 Turret = sprites.create(img`
-    ..........66666...........
-    ..........66666...........
-    ..........66666...........
-    ...........666............
-    fffffffffffcccffffffffffff
-    fffffffffffcccffffffffffff
-    fffffffffffcccffffffffffff
-    fffffffffffcccffffffffffff
-    fffffffffffcccffffffffffff
-    ffeeeeeeeccccccceeeeeeefff
-    ffeeeeeec44ccc44ceeeeeefff
-    eeeeeeec444ccc444ceeeeeeee
-    eeeeeec4444ccc4444ceeeeeee
-    eeeeeec44444444444ceeeeeee
-    eeeeeec44444444444ceeeeeee
-    eeeeeec44444444444ceeeeeee
-    eeeeeec44444444444ceeeeeee
-    eeeeeec44444444444ceeeeeee
-    eeeeeec44444444444ceeeeeee
-    eeeeeeec444444444ceeeeeeee
-    eeeeeeeec4444444ceeeeeeeee
-    eeeeeeeeeccccccceeeeeeeeee
-    eeeeeeeeeeeeeeeeeeeeeeeeee
-    ffeeeeeeeeeeeeeeeeeeeeeeff
-    ffffffffffffffffffffffffff
-    ffffffffffffffffffffffffff
-    ffffffffffffffffffffffffff
-    ffffffffffffffffffffffffff
-    ffffffffffffffffffffffffff
-    ffffffffffffffffffffffffff
+    . . . . b b b b b b . . . 
+    . . . . b b b b b b . . . 
+    . . . . . b b b . . . . . 
+    f f f f f b b b f f f f f 
+    f f f f f b b b f f f f f 
+    e e e e e b 2 b e e e e e 
+    e e e e 2 2 2 2 2 e e e e 
+    e e e e 2 2 2 2 2 e e e e 
+    e e e e 2 2 2 2 2 e e e e 
+    e e e e e 2 2 2 e e e e e 
+    e e e e e e e e e e e e e 
+    f f f f f f f f f f f f f 
+    f f f f f f f f f f f f f 
     `, SpriteKind.Player)
 scene.setBackgroundImage(img`
     7777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777
@@ -193,7 +167,7 @@ let Zombie = sprites.create(img`
     . . . . . . . . . . . . . . . . 
     . . . . . . . . . . . . . . . . 
     `, SpriteKind.Enemy)
-Turret.setPosition(80, 100)
+Turret.setPosition(80, 113)
 forever(function () {
     Turret.setBounceOnWall(true)
     if (controller.A.isPressed()) {
