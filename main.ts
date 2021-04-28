@@ -35,7 +35,7 @@ function zombiespawn () {
     }
 }
 sprites.onOverlap(SpriteKind.Projectile, SpriteKind.Enemy, function (sprite, otherSprite) {
-    Zombie.destroy(effects.fire, 500)
+    otherSprite.destroy(effects.fire, 500)
 })
 let Zombie: Sprite = null
 let shell: Sprite = null
