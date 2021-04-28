@@ -10,7 +10,11 @@ function shootshell () {
         `, Turret, 0, -100)
     pause(500)
 }
+function zombiespawn () {
+    Zombie.setVelocity(0, randint(20, 70))
+}
 let shell: Sprite = null
+let Zombie: Sprite = null
 let Turret: Sprite = null
 Turret = sprites.create(img`
     . . . . b b b b b b . . . 
@@ -149,7 +153,7 @@ scene.setBackgroundImage(img`
     eeeeefffeeeeeefffeeeeeefffeeeeeefffeeeeeefffeeeeeefffeeeeeefffeeeeeefffeeeeeefffeeeeeefffeeeeeefffeeeeeefffeeeeeefffeeeeeefffeeeeeefffeeeeeefffeeeeeefffeeeeeeff
     77777fff777777fff777777fff777777fff777777fff777777fff777777fff777777fff777777fff777777fff777777fff777777fff777777fff777777fff777777fff777777fff777777fff777777ff
     `)
-let Zombie = sprites.create(img`
+Zombie = sprites.create(img`
     . . . . . . . . . . . . . . . . 
     . . . . . . . . . . . . . . . . 
     . . . . . . . . . . . . . . . . 
@@ -168,6 +172,7 @@ let Zombie = sprites.create(img`
     . . . . . . . . . . . . . . . . 
     `, SpriteKind.Enemy)
 Turret.setPosition(80, 113)
+zombiespawn()
 forever(function () {
     Turret.setBounceOnWall(true)
     if (controller.A.isPressed()) {
