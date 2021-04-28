@@ -2,7 +2,7 @@ namespace SpriteKind {
     export const BASE = SpriteKind.create()
 }
 controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
-    gamestart()
+	
 })
 controller.player2.onButtonEvent(ControllerButton.A, ControllerButtonEvent.Pressed, function () {
     shootshell2()
@@ -475,6 +475,7 @@ scene.setBackgroundImage(img`
     777777777777777777777777777777777777777777777777777777777777777777fff7777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777
     `)
 pause(500)
+gamestart()
 forever(function () {
     Turret.setBounceOnWall(true)
     turret2.setBounceOnWall(true)
