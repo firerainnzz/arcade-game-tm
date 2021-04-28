@@ -1,6 +1,9 @@
 namespace SpriteKind {
     export const BASE = SpriteKind.create()
 }
+controller.player2.onButtonEvent(ControllerButton.A, ControllerButtonEvent.Pressed, function () {
+    shootshell2()
+})
 function shootshell () {
     shell = sprites.createProjectileFromSprite(img`
         . f f . 
@@ -20,6 +23,21 @@ sprites.onOverlap(SpriteKind.Enemy, SpriteKind.BASE, function (sprite, otherSpri
 info.onLifeZero(function () {
     game.over(false)
 })
+controller.player1.onButtonEvent(ControllerButton.A, ControllerButtonEvent.Pressed, function () {
+    shootshell()
+})
+function shootshell2 () {
+    shell = sprites.createProjectileFromSprite(img`
+        . f f . 
+        f 5 5 f 
+        f 4 5 f 
+        f 4 5 f 
+        f f f f 
+        f 4 5 f 
+        f f f f 
+        `, turret2, 0, -100)
+    pause(100)
+}
 function zombiespawn () {
     for (let index = 0; index < 4; index++) {
         Zombie = sprites.create(img`
@@ -49,6 +67,7 @@ sprites.onOverlap(SpriteKind.Projectile, SpriteKind.Enemy, function (sprite, oth
 })
 let Zombie: Sprite = null
 let shell: Sprite = null
+let turret2: Sprite = null
 let Turret: Sprite = null
 info.setLife(3)
 Turret = sprites.create(img`
@@ -63,6 +82,21 @@ Turret = sprites.create(img`
     e e e e 2 2 2 2 2 e e e e 
     e e e e e 2 2 2 e e e e e 
     e e e e e e e e e e e e e 
+    f f f f f f f f f f f f f 
+    f f f f f f f f f f f f f 
+    `, SpriteKind.Player)
+turret2 = sprites.create(img`
+    . . . . b b b b b b . . . 
+    . . . . b b b b b b . . . 
+    . . . . . b b b . . . . . 
+    f f f f f b b b f f f f f 
+    f f f f f b b b f f f f f 
+    6 6 6 6 6 b c b 6 6 6 6 6 
+    6 6 6 6 c c c c c 6 6 6 6 
+    6 6 6 6 c c c c c 6 6 6 6 
+    6 6 6 6 c c c c c 6 6 6 6 
+    6 6 6 6 6 c c c 6 6 6 6 6 
+    6 6 6 6 6 6 6 6 6 6 6 6 6 
     f f f f f f f f f f f f f 
     f f f f f f f f f f f f f 
     `, SpriteKind.Player)
@@ -311,16 +345,21 @@ let baseground = sprites.create(img`
     7777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777
     `, SpriteKind.BASE)
 Turret.setPosition(80, 112)
+turret2.setPosition(80, 112)
 forever(function () {
     Turret.setBounceOnWall(true)
-    if (controller.A.isPressed()) {
-        shootshell()
+    turret2.setBounceOnWall(true)
+    if (controller.player1.isPressed(ControllerButton.Left)) {
+        Turret.x += -1
     }
-    if (controller.right.isPressed()) {
+    if (controller.player1.isPressed(ControllerButton.Right)) {
         Turret.x += 1
     }
-    if (controller.left.isPressed()) {
-        Turret.x += -1
+    if (controller.player2.isPressed(ControllerButton.Left)) {
+        turret2.x += -1
+    }
+    if (controller.player2.isPressed(ControllerButton.Right)) {
+        turret2.x += 1
     }
 })
 forever(function () {
