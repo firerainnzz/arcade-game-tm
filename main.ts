@@ -10,6 +10,9 @@ function shootshell () {
         `, Turret, 0, -100)
     pause(100)
 }
+info.onLifeZero(function () {
+    game.over(false)
+})
 function zombiespawn () {
     for (let index = 0; index < 4; index++) {
         Zombie = sprites.create(img`
@@ -40,6 +43,7 @@ sprites.onOverlap(SpriteKind.Projectile, SpriteKind.Enemy, function (sprite, oth
 let Zombie: Sprite = null
 let shell: Sprite = null
 let Turret: Sprite = null
+info.setLife(3)
 Turret = sprites.create(img`
     . . . . b b b b b b . . . 
     . . . . b b b b b b . . . 
@@ -163,21 +167,39 @@ scene.setBackgroundImage(img`
     7777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777
     7777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777
     7777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777
+    77777fff777777fff777777fff777777fff777777fff777777fff777777fff777777fff777777fff777777fff777777fff777777fff777777fff777777fff777777fff777777fff777777fff777777ff
+    eeeeefffeeeeeefffeeeeeefffeeeeeefffeeeeeefffeeeeeefffeeeeeefffeeeeeefffeeeeeefffeeeeeefffeeeeeefffeeeeeefffeeeeeefffeeeeeefffeeeeeefffeeeeeefffeeeeeefffeeeeeeff
+    eeeeefffeeeeeefffeeeeeefffeeeeeefffeeeeeefffeeeeeefffeeeeeefffeeeeeefffeeeeeefffeeeeeefffeeeeeefffeeeeeefffeeeeeefffeeeeeefffeeeeeefffeeeeeefffeeeeeefffeeeeeeff
+    eeeeefffeeeeeefffeeeeeefffeeeeeefffeeeeeefffeeeeeefffeeeeeefffeeeeeefffeeeeeefffeeeeeefffeeeeeefffeeeeeefffeeeeeefffeeeeeefffeeeeeefffeeeeeefffeeeeeefffeeeeeeff
+    77777fff777777fff777777fff777777fff777777fff777777fff777777fff777777fff777777fff777777fff777777fff777777fff777777fff777777fff777777fff777777fff777777fff777777ff
+    77777fff777777fff777777fff777777fff777777fff777777fff777777fff777777fff777777fff777777fff777777fff777777fff777777fff777777fff777777fff777777fff777777fff777777ff
+    77777fff777777fff777777fff777777fff777777fff777777fff777777fff777777fff777777fff777777fff777777fff777777fff777777fff777777fff777777fff777777fff777777fff777777ff
+    77777fff777777fff777777fff777777fff777777fff777777fff777777fff777777fff777777fff777777fff777777fff777777fff777777fff777777fff777777fff777777fff777777fff777777ff
+    eeeeefffeeeeeefffeeeeeefffeeeeeefffeeeeeefffeeeeeefffeeeeeefffeeeeeefffeeeeeefffeeeeeefffeeeeeefffeeeeeefffeeeeeefffeeeeeefffeeeeeefffeeeeeefffeeeeeefffeeeeeeff
+    eeeeefffeeeeeefffeeeeeefffeeeeeefffeeeeeefffeeeeeefffeeeeeefffeeeeeefffeeeeeefffeeeeeefffeeeeeefffeeeeeefffeeeeeefffeeeeeefffeeeeeefffeeeeeefffeeeeeefffeeeeeeff
+    eeeeefffeeeeeefffeeeeeefffeeeeeefffeeeeeefffeeeeeefffeeeeeefffeeeeeefffeeeeeefffeeeeeefffeeeeeefffeeeeeefffeeeeeefffeeeeeefffeeeeeefffeeeeeefffeeeeeefffeeeeeeff
+    77777fff777777fff777777fff777777fff777777fff777777fff777777fff777777fff777777fff777777fff777777fff777777fff777777fff777777fff777777fff777777fff777777fff777777ff
     7777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777
-    77777fff777777fff777777fff777777fff777777fff777777fff777777fff777777fff777777fff777777fff777777fff777777fff777777fff777777fff777777fff777777fff777777fff777777ff
-    eeeeefffeeeeeefffeeeeeefffeeeeeefffeeeeeefffeeeeeefffeeeeeefffeeeeeefffeeeeeefffeeeeeefffeeeeeefffeeeeeefffeeeeeefffeeeeeefffeeeeeefffeeeeeefffeeeeeefffeeeeeeff
-    eeeeefffeeeeeefffeeeeeefffeeeeeefffeeeeeefffeeeeeefffeeeeeefffeeeeeefffeeeeeefffeeeeeefffeeeeeefffeeeeeefffeeeeeefffeeeeeefffeeeeeefffeeeeeefffeeeeeefffeeeeeeff
-    eeeeefffeeeeeefffeeeeeefffeeeeeefffeeeeeefffeeeeeefffeeeeeefffeeeeeefffeeeeeefffeeeeeefffeeeeeefffeeeeeefffeeeeeefffeeeeeefffeeeeeefffeeeeeefffeeeeeefffeeeeeeff
-    77777fff777777fff777777fff777777fff777777fff777777fff777777fff777777fff777777fff777777fff777777fff777777fff777777fff777777fff777777fff777777fff777777fff777777ff
-    77777fff777777fff777777fff777777fff777777fff777777fff777777fff777777fff777777fff777777fff777777fff777777fff777777fff777777fff777777fff777777fff777777fff777777ff
-    77777fff777777fff777777fff777777fff777777fff777777fff777777fff777777fff777777fff777777fff777777fff777777fff777777fff777777fff777777fff777777fff777777fff777777ff
-    77777fff777777fff777777fff777777fff777777fff777777fff777777fff777777fff777777fff777777fff777777fff777777fff777777fff777777fff777777fff777777fff777777fff777777ff
-    eeeeefffeeeeeefffeeeeeefffeeeeeefffeeeeeefffeeeeeefffeeeeeefffeeeeeefffeeeeeefffeeeeeefffeeeeeefffeeeeeefffeeeeeefffeeeeeefffeeeeeefffeeeeeefffeeeeeefffeeeeeeff
-    eeeeefffeeeeeefffeeeeeefffeeeeeefffeeeeeefffeeeeeefffeeeeeefffeeeeeefffeeeeeefffeeeeeefffeeeeeefffeeeeeefffeeeeeefffeeeeeefffeeeeeefffeeeeeefffeeeeeefffeeeeeeff
-    eeeeefffeeeeeefffeeeeeefffeeeeeefffeeeeeefffeeeeeefffeeeeeefffeeeeeefffeeeeeefffeeeeeefffeeeeeefffeeeeeefffeeeeeefffeeeeeefffeeeeeefffeeeeeefffeeeeeefffeeeeeeff
-    77777fff777777fff777777fff777777fff777777fff777777fff777777fff777777fff777777fff777777fff777777fff777777fff777777fff777777fff777777fff777777fff777777fff777777ff
     `)
-Turret.setPosition(80, 113)
+let mySprite = sprites.create(img`
+    . . . . . . . . . . . . . . . . 
+    . . . . . . . . . . . . . . . . 
+    . . . . . . . . . . . . . . . . 
+    . . . . . . . . . . . . . . . . 
+    . . . . . . . . . . . . . . . . 
+    . . . . . . . . . . . . . . . . 
+    . . . . . . . . . . . . . . . . 
+    . . . . . . . . . . . . . . . . 
+    . . . . . . . . . . . . . . . . 
+    . . . . . . . . . . . . . . . . 
+    . . . . . . . . . . . . . . . . 
+    . . . . . . . . . . . . . . . . 
+    . . . . . . . . . . . . . . . . 
+    . . . . . . . . . . . . . . . . 
+    . . . . . . . . . . . . . . . . 
+    . . . . . . . . . . . . . . . . 
+    `, SpriteKind.Player)
+Turret.setPosition(80, 112)
 forever(function () {
     Turret.setBounceOnWall(true)
     if (controller.A.isPressed()) {
@@ -193,4 +215,9 @@ forever(function () {
 forever(function () {
     zombiespawn()
     pause(5000)
+})
+forever(function () {
+    if (Zombie.isHittingTile(CollisionDirection.Bottom)) {
+        info.changeLifeBy(-1)
+    }
 })
