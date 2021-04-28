@@ -11,10 +11,31 @@ function shootshell () {
     pause(500)
 }
 function zombiespawn () {
-    Zombie.setVelocity(0, randint(5, 70))
+    for (let index = 0; index < 15; index++) {
+        Zombie = sprites.create(img`
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . e e f . . . . . . . . 
+            . . . . e e e 7 7 . . . . . . . 
+            . . . e e e e 7 7 3 . . . . . . 
+            . . . e e e e 7 7 3 3 3 . . . . 
+            . . . e e 7 7 7 7 7 2 2 f . . . 
+            . . . f 7 7 1 7 7 f 2 2 f . . . 
+            . . . . f 7 7 7 7 7 2 f . . . . 
+            . . . . f f f f f f f f . . . . 
+            . . . . f 7 f . . f 7 f . . . . 
+            . . . . f 7 f . . f 7 f . . . . 
+            . . . . f f f . . f f f . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            `, SpriteKind.Enemy)
+        Zombie.setVelocity(0, randint(5, 70))
+        Zombie.setPosition(randint(0, 180), 0)
+    }
 }
-let shell: Sprite = null
 let Zombie: Sprite = null
+let shell: Sprite = null
 let Turret: Sprite = null
 Turret = sprites.create(img`
     . . . . b b b b b b . . . 
@@ -153,24 +174,6 @@ scene.setBackgroundImage(img`
     eeeeefffeeeeeefffeeeeeefffeeeeeefffeeeeeefffeeeeeefffeeeeeefffeeeeeefffeeeeeefffeeeeeefffeeeeeefffeeeeeefffeeeeeefffeeeeeefffeeeeeefffeeeeeefffeeeeeefffeeeeeeff
     77777fff777777fff777777fff777777fff777777fff777777fff777777fff777777fff777777fff777777fff777777fff777777fff777777fff777777fff777777fff777777fff777777fff777777ff
     `)
-Zombie = sprites.create(img`
-    . . . . . . . . . . . . . . . . 
-    . . . . . . . . . . . . . . . . 
-    . . . . . . . . . . . . . . . . 
-    . . . . . e e f . . . . . . . . 
-    . . . . e e e 7 7 . . . . . . . 
-    . . . e e e e 7 7 3 . . . . . . 
-    . . . e e e e 7 7 3 3 3 . . . . 
-    . . . e e 7 7 7 7 7 2 2 f . . . 
-    . . . f 7 7 1 7 7 f 2 2 f . . . 
-    . . . . f 7 7 7 7 7 2 f . . . . 
-    . . . . f f f f f f f f . . . . 
-    . . . . f 7 f . . f 7 f . . . . 
-    . . . . f 7 f . . f 7 f . . . . 
-    . . . . f f f . . f f f . . . . 
-    . . . . . . . . . . . . . . . . 
-    . . . . . . . . . . . . . . . . 
-    `, SpriteKind.Enemy)
 Turret.setPosition(80, 113)
 zombiespawn()
 forever(function () {
