@@ -11,7 +11,7 @@ function shootshell () {
     pause(500)
 }
 function zombiespawn () {
-    Zombie.setVelocity(0, randint(20, 70))
+    Zombie.setVelocity(0, randint(5, 70))
 }
 let shell: Sprite = null
 let Zombie: Sprite = null
