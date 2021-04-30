@@ -7,7 +7,32 @@ controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
 controller.player2.onButtonEvent(ControllerButton.A, ControllerButtonEvent.Pressed, function () {
     shootshell2()
 })
+info.onCountdownEnd(function () {
+    for (let index = 0; index < 25; index++) {
+        Zombie = sprites.create(img`
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . e e f . . . . . . . . 
+            . . . . e e e 7 7 . . . . . . . 
+            . . . e e e e 7 7 3 . . . . . . 
+            . . . e e e e 7 7 3 3 3 . . . . 
+            . . . e e 7 7 7 7 7 2 2 f . . . 
+            . . . f 7 7 1 7 7 f 2 2 f . . . 
+            . . . . f 7 7 7 7 7 2 f . . . . 
+            . . . . f f f f f f f f . . . . 
+            . . . . f 7 f . . f 7 f . . . . 
+            . . . . f 7 f . . f 7 f . . . . 
+            . . . . f f f . . f f f . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            `, SpriteKind.Enemy)
+        Zombie.setVelocity(0, randint(2, 5))
+        Zombie.setPosition(randint(10, 150), 0)
+    }
+})
 function gamestart () {
+    wave_times = 5000
     info.setLife(3)
     Turret = sprites.create(img`
         . . . . b b b b b b . . . 
@@ -285,6 +310,7 @@ function gamestart () {
         `, SpriteKind.BASE)
     Turret.setPosition(80, 112)
     turret2.setPosition(80, 112)
+    bigwavecountdown()
 }
 function shootshell () {
     shell = sprites.createProjectileFromSprite(img`
@@ -296,20 +322,20 @@ function shootshell () {
         f 4 5 f 
         f f f f 
         `, Turret, 0, -100)
-    pause(100)
+    pause(500)
 }
 sprites.onOverlap(SpriteKind.Enemy, SpriteKind.BASE, function (sprite, otherSprite) {
     info.changeLifeBy(-1)
     sprite.destroy()
 })
 info.onLifeZero(function () {
-    game.over(false)
+    game.over(false, effects.dissolve)
 })
 controller.player1.onButtonEvent(ControllerButton.A, ControllerButtonEvent.Pressed, function () {
     shootshell()
 })
 function shootshell2 () {
-    shell = sprites.createProjectileFromSprite(img`
+    shell2 = sprites.createProjectileFromSprite(img`
         . f f . 
         f 5 5 f 
         f 4 5 f 
@@ -318,10 +344,10 @@ function shootshell2 () {
         f 4 5 f 
         f f f f 
         `, turret2, 0, -100)
-    pause(100)
+    pause(500)
 }
 function zombiespawn () {
-    for (let index = 0; index < 4; index++) {
+    for (let index = 0; index < 10; index++) {
         Zombie = sprites.create(img`
             . . . . . . . . . . . . . . . . 
             . . . . . . . . . . . . . . . . 
@@ -344,14 +370,21 @@ function zombiespawn () {
         Zombie.setPosition(randint(10, 150), 0)
     }
 }
+function bigwavecountdown () {
+    info.startCountdown(60)
+}
 sprites.onOverlap(SpriteKind.Projectile, SpriteKind.Enemy, function (sprite, otherSprite) {
     otherSprite.destroy(effects.fire, 500)
+    sprite.destroy()
+    info.changeScoreBy(1)
 })
-let Zombie: Sprite = null
+let shell2: Sprite = null
 let shell: Sprite = null
 let baseground: Sprite = null
 let turret2: Sprite = null
 let Turret: Sprite = null
+let wave_times = 0
+let Zombie: Sprite = null
 scene.setBackgroundImage(img`
     7777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777
     7777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777
@@ -494,5 +527,9 @@ forever(function () {
 })
 forever(function () {
     zombiespawn()
-    pause(5000)
+    pause(wave_times)
+})
+forever(function () {
+    wave_times += -250
+    pause(10000)
 })
