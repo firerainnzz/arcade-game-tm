@@ -1,5 +1,6 @@
 namespace SpriteKind {
     export const BASE = SpriteKind.create()
+    export const powerup = SpriteKind.create()
 }
 controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
 	
@@ -8,7 +9,7 @@ controller.player2.onButtonEvent(ControllerButton.A, ControllerButtonEvent.Press
     shootshell2()
 })
 info.onCountdownEnd(function () {
-    for (let index = 0; index < 25; index++) {
+    for (let index = 0; index < 40; index++) {
         Zombie = sprites.create(img`
             . . . . . . . . . . . . . . . . 
             . . . . . . . . . . . . . . . . 
@@ -27,7 +28,7 @@ info.onCountdownEnd(function () {
             . . . . . . . . . . . . . . . . 
             . . . . . . . . . . . . . . . . 
             `, SpriteKind.Enemy)
-        Zombie.setVelocity(0, randint(2, 5))
+        Zombie.setVelocity(0, 2)
         Zombie.setPosition(randint(10, 150), 0)
     }
 })
@@ -373,11 +374,44 @@ function zombiespawn () {
 function bigwavecountdown () {
     info.startCountdown(60)
 }
+sprites.onOverlap(SpriteKind.powerup, SpriteKind.Player, function (sprite, otherSprite) {
+    sprite.destroy(effects.warmRadial, 500)
+    for (let Zombie of sprites.allOfKind(SpriteKind.Enemy)) {
+        Zombie.destroy(effects.ashes, 500)
+    }
+    info.changeScoreBy(20)
+})
 sprites.onOverlap(SpriteKind.Projectile, SpriteKind.Enemy, function (sprite, otherSprite) {
     otherSprite.destroy(effects.fire, 500)
     sprite.destroy()
     info.changeScoreBy(1)
+    diceroll = randint(0, 40)
+    if (diceroll == 20) {
+        airstrike = sprites.create(img`
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . 2 . . . . . . 
+            . . . . . . . . . f . . . . . . 
+            . . . . . . f f f f f . . . . . 
+            . . . . . f b b b b b f . . . . 
+            . . . . . f b 2 b 2 b f . . . . 
+            . . . . f b 2 b 2 b f . . . . . 
+            . . . . f b b b b b f . . . . . 
+            . . . f b b 2 2 b f . . . . . . 
+            . . . f b 2 2 b b f . . . . . . 
+            . . f b b b b b f . . . . . . . 
+            . . f b b b b b f . . . . . . . 
+            . . . f f f f f . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            `, SpriteKind.powerup)
+        airstrike.x = otherSprite.x
+        airstrike.y = otherSprite.y
+        airstrike.setVelocity(0, otherSprite.vy)
+    }
 })
+let airstrike: Sprite = null
+let diceroll = 0
 let shell2: Sprite = null
 let shell: Sprite = null
 let baseground: Sprite = null
