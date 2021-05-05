@@ -1,6 +1,86 @@
 namespace SpriteKind {
     export const BASE = SpriteKind.create()
     export const powerup = SpriteKind.create()
+    export const powerupv2 = SpriteKind.create()
+}
+function shootybooty () {
+    if (bullettype == 0) {
+        shell = sprites.createProjectileFromSprite(img`
+            . f f . 
+            f 5 5 f 
+            f 4 5 f 
+            f 4 5 f 
+            f f f f 
+            f 4 5 f 
+            f f f f 
+            `, turret2, 0, -100)
+        shell2 = sprites.createProjectileFromSprite(img`
+            . f f . 
+            f 5 5 f 
+            f 4 5 f 
+            f 4 5 f 
+            f f f f 
+            f 4 5 f 
+            f f f f 
+            `, turret2, 0, -100)
+    } else if (bullettype == 1) {
+        shell = sprites.createProjectileFromSprite(img`
+            . . . . f f f f f f f f . . . . 
+            . . . f 4 4 4 4 4 4 5 5 f . . . 
+            . . f 4 4 4 4 4 4 4 5 5 4 f . . 
+            . f 4 4 4 4 4 4 4 4 5 5 4 4 f . 
+            . f 4 4 9 9 4 4 4 4 5 5 4 4 f . 
+            . f 4 4 9 4 4 4 4 4 5 5 4 4 f . 
+            . f 4 4 9 4 9 9 4 4 5 5 4 4 f . 
+            . f 4 4 9 4 4 4 4 4 5 5 4 4 f . 
+            . f 4 4 9 4 9 9 4 4 5 5 4 4 f . 
+            . f 4 4 9 4 4 4 4 4 5 5 4 4 f . 
+            . f 4 4 9 9 4 4 4 4 5 5 4 4 f . 
+            . f 4 4 4 4 4 4 4 4 5 5 4 4 f . 
+            . f f f f f f f f f f f f f f . 
+            . . f 4 4 4 4 4 4 4 5 5 4 f . . 
+            . f f f f f f f f f f f f f f . 
+            f f f f f f f f f f f f f f f f 
+            `, turret2, 0, -100)
+        shell2 = sprites.createProjectileFromSprite(img`
+            . . . . f f f f f f f f . . . . 
+            . . . f 4 4 4 4 4 4 5 5 f . . . 
+            . . f 4 4 4 4 4 4 4 5 5 4 f . . 
+            . f 4 4 4 4 4 4 4 4 5 5 4 4 f . 
+            . f 4 4 9 9 4 4 4 4 5 5 4 4 f . 
+            . f 4 4 9 4 4 4 4 4 5 5 4 4 f . 
+            . f 4 4 9 4 9 9 4 4 5 5 4 4 f . 
+            . f 4 4 9 4 4 4 4 4 5 5 4 4 f . 
+            . f 4 4 9 4 9 9 4 4 5 5 4 4 f . 
+            . f 4 4 9 4 4 4 4 4 5 5 4 4 f . 
+            . f 4 4 9 9 4 4 4 4 5 5 4 4 f . 
+            . f 4 4 4 4 4 4 4 4 5 5 4 4 f . 
+            . f f f f f f f f f f f f f f . 
+            . . f 4 4 4 4 4 4 4 5 5 4 f . . 
+            . f f f f f f f f f f f f f f . 
+            f f f f f f f f f f f f f f f f 
+            `, turret2, 0, -100)
+    }
+}
+function piercingbullets () {
+    shell = sprites.createProjectileFromSprite(img`
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        `, Turret, 0, -100)
 }
 controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
 	
@@ -8,31 +88,17 @@ controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
 controller.player2.onButtonEvent(ControllerButton.A, ControllerButtonEvent.Pressed, function () {
     shootshell2()
 })
+sprites.onOverlap(SpriteKind.powerupv2, SpriteKind.Player, function (sprite, otherSprite) {
+    sprite.destroy(effects.warmRadial, 500)
+    bullettype = 1
+    info.startCountdown(10)
+    piercingbullets()
+})
 info.onCountdownEnd(function () {
-    for (let index = 0; index < 40; index++) {
-        Zombie = sprites.create(img`
-            . . . . . . . . . . . . . . . . 
-            . . . . . . . . . . . . . . . . 
-            . . . . . . . . . . . . . . . . 
-            . . . . . e e f . . . . . . . . 
-            . . . . e e e 7 7 . . . . . . . 
-            . . . e e e e 7 7 3 . . . . . . 
-            . . . e e e e 7 7 3 3 3 . . . . 
-            . . . e e 7 7 7 7 7 2 2 f . . . 
-            . . . f 7 7 1 7 7 f 2 2 f . . . 
-            . . . . f 7 7 7 7 7 2 f . . . . 
-            . . . . f f f f f f f f . . . . 
-            . . . . f 7 f . . f 7 f . . . . 
-            . . . . f 7 f . . f 7 f . . . . 
-            . . . . f f f . . f f f . . . . 
-            . . . . . . . . . . . . . . . . 
-            . . . . . . . . . . . . . . . . 
-            `, SpriteKind.Enemy)
-        Zombie.setVelocity(0, 2)
-        Zombie.setPosition(randint(10, 150), 0)
-    }
+    bullettype = 0
 })
 function gamestart () {
+    bullettype = 0
     wave_times = 5000
     info.setLife(3)
     Turret = sprites.create(img`
@@ -311,7 +377,6 @@ function gamestart () {
         `, SpriteKind.BASE)
     Turret.setPosition(80, 112)
     turret2.setPosition(80, 112)
-    bigwavecountdown()
 }
 function shootshell () {
     shell = sprites.createProjectileFromSprite(img`
@@ -336,15 +401,7 @@ controller.player1.onButtonEvent(ControllerButton.A, ControllerButtonEvent.Press
     shootshell()
 })
 function shootshell2 () {
-    shell2 = sprites.createProjectileFromSprite(img`
-        . f f . 
-        f 5 5 f 
-        f 4 5 f 
-        f 4 5 f 
-        f f f f 
-        f 4 5 f 
-        f f f f 
-        `, turret2, 0, -100)
+    shootybooty()
     pause(500)
 }
 function zombiespawn () {
@@ -371,9 +428,6 @@ function zombiespawn () {
         Zombie.setPosition(randint(10, 150), 0)
     }
 }
-function bigwavecountdown () {
-    info.startCountdown(60)
-}
 sprites.onOverlap(SpriteKind.powerup, SpriteKind.Player, function (sprite, otherSprite) {
     sprite.destroy(effects.warmRadial, 500)
     for (let Zombie of sprites.allOfKind(SpriteKind.Enemy)) {
@@ -383,7 +437,11 @@ sprites.onOverlap(SpriteKind.powerup, SpriteKind.Player, function (sprite, other
 })
 sprites.onOverlap(SpriteKind.Projectile, SpriteKind.Enemy, function (sprite, otherSprite) {
     otherSprite.destroy(effects.fire, 500)
-    sprite.destroy()
+    if (bullettype == 0) {
+        sprite.destroy()
+    } else if (bullettype == 1) {
+    	
+    }
     info.changeScoreBy(1)
     diceroll = randint(0, 40)
     if (diceroll == 20) {
@@ -409,16 +467,41 @@ sprites.onOverlap(SpriteKind.Projectile, SpriteKind.Enemy, function (sprite, oth
         airstrike.y = otherSprite.y
         airstrike.setVelocity(0, otherSprite.vy)
     }
+    if (diceroll == 10) {
+        upgraded_bullets = sprites.create(img`
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . f . . . . . f . . . . . . . 
+            . . f . . . . . f . . . . . . . 
+            . . f . . . . . f . . . . . . . 
+            . . f . . . . . f . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            f . . . . . . . . . . . . . . . 
+            f f . . . . . . . . f f . . . . 
+            . f f f . . . . . . f . . . . . 
+            . . . . f f f f f f f . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            `, SpriteKind.powerupv2)
+        upgraded_bullets.x = otherSprite.x
+        upgraded_bullets.y = otherSprite.y
+        upgraded_bullets.setVelocity(0, otherSprite.vy)
+    }
 })
+let upgraded_bullets: Sprite = null
 let airstrike: Sprite = null
 let diceroll = 0
-let shell2: Sprite = null
-let shell: Sprite = null
-let baseground: Sprite = null
-let turret2: Sprite = null
-let Turret: Sprite = null
-let wave_times = 0
 let Zombie: Sprite = null
+let baseground: Sprite = null
+let wave_times = 0
+let Turret: Sprite = null
+let shell2: Sprite = null
+let turret2: Sprite = null
+let shell: Sprite = null
+let bullettype = 0
 scene.setBackgroundImage(img`
     7777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777
     7777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777
