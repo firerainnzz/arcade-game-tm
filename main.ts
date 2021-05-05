@@ -84,7 +84,6 @@ function piercingbullets () {
 }
 controller.player2.onButtonEvent(ControllerButton.A, ControllerButtonEvent.Pressed, function () {
     shootshell2()
-    music.jumpUp.play()
 })
 sprites.onOverlap(SpriteKind.powerupv2, SpriteKind.Player, function (sprite, otherSprite) {
     sprite.destroy(effects.warmRadial, 500)
@@ -397,7 +396,6 @@ info.onLifeZero(function () {
 })
 controller.player1.onButtonEvent(ControllerButton.A, ControllerButtonEvent.Pressed, function () {
     shootshell()
-    music.jumpUp.play()
 })
 function shootshell2 () {
     shootybooty()
